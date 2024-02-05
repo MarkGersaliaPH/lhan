@@ -1,0 +1,40 @@
+import { Link } from "@inertiajs/react";
+
+export default function PrimaryButton({
+    className = "",
+    disabled,
+    href,
+    children,
+    processing,
+    ...props
+}) {
+    return (
+        <>
+            {href ? (
+                <Link
+                    href={href}
+                    className={
+                        `inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold  text-white   tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 ${
+                            disabled && "opacity-25"
+                        } ` + className
+                    }
+                    disabled={disabled}
+                >
+                    {children}
+                </Link>
+            ) : (
+                <button
+                    {...props}
+                    className={
+                        `inline-flex items-center px-4 py-2 bg-blue-500 border border-transparent rounded-md font-semibold   text-white   tracking-widest hover:bg-blue-700 focus:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 ${
+                            disabled && "opacity-25"
+                        } ` + className
+                    }
+                    disabled={disabled}
+                >
+                    {processing ? "Please wait" : children}
+                </button>
+            )}
+        </>
+    );
+}
